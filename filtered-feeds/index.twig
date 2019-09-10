@@ -2,9 +2,27 @@
 {% block title %}DataX - Filtered Feeds{% endblock %}
 {% block content %}
 
-<div class="clear" />
+    <div class="clear" />
 
-<table id="filtered-feeds-table"></table>
+    <div id="tool-content">
+        <div id="title">
+            <h1>Filtered Feeds</h1>
+        </div>
+        <div id="purpose">
+                <p>With this tool you can view and create DataX Filtered Feeds.</p>
+            </div>
+        </div>
+        <div id="filtered-feeds-controls">
+            <button id="create-filtered-feed-button">
+                <span class="create-icon"></span>
+                <span>Create Filtered Feed</span>
+            </button>
+        </div>
 
+        {% include "loading-animation-modal.twig" %}
+
+        {% include "datax/filtered-feeds/table.twig" %}
+
+        {% include "datax/filtered-feeds/create-filtered-feed-dialog.twig" %}
 {% endblock %}
 
