@@ -1,0 +1,22 @@
+<div id="create-filtered-feed-dialog" class="modal-form hidden">
+    <form id="add-filtered-feed-form" class="grid-form">
+        <label for="filtered-feed-id">Feed ID</label>
+        <input class="user-input" type="text" id="filtered-feed-id" required />
+
+        <label for="filtered-feed-pattern">Unfiltered File Pattern</label>
+        <input class="user-input" type="text" id="filtered-feed-pattern" required />
+
+        <label for="filtered-feed-file-name">Filtered File Name</label>
+        <input class="user-input" type="text" id="filtered-feed-file-name" required />
+
+        <label for="filtered-feed-delimiter">Delimiter</label>
+        <select class="user-input" id="filtered-feed-delimiter" required>
+            <option value="comma">Comma</option>
+            <option value="pipe">Pipe</option>
+            <option value="tab">TAB</option>
+        </select>
+
+        <label for="filtered-feed-enclosure">Enclosure</label>
+        <input class="user-input" type="text" id="filtered-feed-enclosure" required maxlength="1"/>
+    </form>
+</div>
