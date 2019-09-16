@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+{% block title %}DataX - Feed Groups{% endblock %}
+{% block content %}
+
+    <div class="clear" />
+
+    <div id="tool-content">
+        <div id="title">
+            <h1>Feed Groups</h1>
+        </div>
+        <div id="purpose">
+            <div>
+                <p>With this tool you can view DataX Feed Groups</p>
+            </div>
+        </div>
+        <div id="feed-groups-controls">
+            <!-- Place Add, Update, Delete buttons here -->
+        </div>
+    </div>
+
+    {% include "datax/feeds/groups/table.twig" %}
+
+    {% include "loading-animation-modal.twig" with {hidden: 'false'} %}
+
+{% endblock %}
+
