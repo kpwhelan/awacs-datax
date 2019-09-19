@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+{% block title %}DataX - Feed Field Values{% endblock %}
+{% block content %}
+    <div id="tool-content" class="tool-content">
+        <div id="title">
+            <h1>Feed Field Values</h1>
+        </div>
+        <div id="purpose">
+            <p>This tool is used to manage field values for DataX feeds.</p>
+        </div>
+    </div>
+    <div id="feed-field-values-tool-controls" class="tool-controls">
+        <form class="tool-controls-list">
+            <label for="feed-id" class="required-field">Feed ID</label>
+            <input id="feed-id" name="feedId" placeholder="Enter a feed ID..." value="{{ feedId }}" required/>
+            <label for="field-id" class="required-field">Field ID</label>
+            <input id="field-id" name="fieldId" placeholder="Enter a feed field ID..." value="{{ fieldId }}" required/>
+            <span></span>
+            <button id="find-feed-field-values-button">Update</button>
+        </form>
+    </div>
+    <div id="feed-field-values-table-controls" class="table-controls">
+        <div class="table-controls-list">
+        </div>
+    </div>
+    <table id="feed-field-values-table"></table>
+
+    {% include "loading-animation-modal.twig" %}
+    <div class="hidden">
+        {% include "datax/feeds/create-feed-field-value-dialog.twig" %}
+        {% include "datax/feeds/delete-feed-field-value-dialog.twig" %}
+    </div>
+{% endblock %}

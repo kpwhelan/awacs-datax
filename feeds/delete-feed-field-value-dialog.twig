@@ -1,0 +1,9 @@
+{% include 'delete-form.twig' with {
+    prefix: 'delete-feed-field-value',
+    hiddenFields: [
+        { id: 'feed-id', name: 'feedId' },
+        { id: 'field-id', name: 'fieldId' },
+        { id: 'value', name: 'value' },
+    ],
+    type: 'feed field value',
+} only %}

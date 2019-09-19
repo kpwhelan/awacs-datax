@@ -1,0 +1,10 @@
+{% include 'form.twig' with {
+    prefix: 'create-feed-field-value',
+    hiddenFields: [
+        { id: 'feed-id', name: 'feedId' },
+        { id: 'field-id', name: 'fieldId' },
+    ],
+    fields: [
+        { id: 'value', name: 'value', label: 'Value' },
+    ],
+} only %}
