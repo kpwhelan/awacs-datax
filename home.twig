@@ -1,6 +1,8 @@
 {% extends "base.twig" %}
 {% block title %}DataX{% endblock %}
 {% block content %}
-    <h1>DataX Within AWACS</h1>
-    {% include 'home-index-list.twig' with { links: links } %}
+    <div class="utility-content">
+        <h1>DataX Within AWACS</h1>
+        {% include 'home-index-list.twig' with { links: links } %}
+    </div>
 {% endblock %}
