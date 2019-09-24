@@ -1,0 +1,16 @@
+{%  include 'controls.twig' with {
+    prefix: 'feed-groups',
+    title: 'Feed Groups',
+    purpose: 'With this tool you can view DataX Feed Groups',
+    user: user,
+    host: host,
+    area: constant('\\TraderInteractive\\Area::DATAX'),
+    controls: [
+        {
+            id: 'create-feed-group-button',
+            label: 'Create Feed Group',
+            icon: 'create-icon',
+            privilege: constant('\\TraderInteractive\\Privilege::WRITE'),
+        },
+    ],
+} only %}
