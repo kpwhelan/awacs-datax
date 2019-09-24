@@ -1,0 +1,30 @@
+<div id="feed-groups-form-dialog" class="hidden">
+    {% include 'form.twig' with {
+        prefix: 'feed-group',
+        fields: [
+            {
+                id: 'name',
+                name: 'name',
+                label: 'Name',
+                required: true
+            },
+            {
+                id: 'email',
+                name: 'email',
+                label: 'Email',
+                required: true
+            },
+            {
+                id: 'status',
+                name: 'status',
+                label: 'Status',
+                type: 'select',
+                options: [
+                    { id: 'active', name: 'Active' },
+                    { id: 'inactive', name: 'Inactive' },
+                ],
+                required: true
+            },
+        ],
+    } only %}
+</div>
