@@ -10,5 +10,11 @@
 
     {% include "loading-animation-modal.twig" with {hidden: 'false'} %}
 
+    <div id="row-controls" class="hidden">
+        {% if user_has_access(user, constant('\\TraderInteractive\\Area::DATAX'), constant('\\TraderInteractive\\Privilege::WRITE'), host) %}
+            <span class="edit-icon button-icon edit-feed-group-button" title="Edit Feed Group"></span>
+        {% endif %}
+    </div>
+
 {% endblock %}
 
