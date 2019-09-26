@@ -1,0 +1,13 @@
+<div id="feed-groups-delete-form-dialog" class="hidden">
+    {% include 'form.twig' with {
+        prefix: 'delete-feed-group',
+        fields: [
+            {
+                id: 'name',
+                name: 'name',
+                label: 'Name',
+                readonly: true
+            },
+        ],
+    } only %}
+</div>
