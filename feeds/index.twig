@@ -1,0 +1,15 @@
+{% extends "base.twig" %}
+{% block title %}DataX - Feeds{% endblock %}
+{% block content %}
+
+    {% include "datax/feeds/controls.twig" %}
+
+    {% include "datax/feeds/table.twig" %}
+
+    <div class="hidden">
+
+        {% include "loading-animation-modal.twig" with {hidden: 'false'} %}
+
+    </div>
+
+{% endblock %}
