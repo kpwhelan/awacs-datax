@@ -1,0 +1,8 @@
+{% include 'delete-form.twig' with {
+    hiddenFields: [
+        { id: 'id', name: 'id' },
+    ],
+    hidden: 'true',
+    prefix: 'delete-item-blocker',
+    type: 'item blocker',
+} only %}

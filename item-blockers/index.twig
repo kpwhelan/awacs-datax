@@ -1,0 +1,37 @@
+{% extends "base.twig" %}
+{% block title %}DataX - Item Blockers{% endblock %}
+{% block content %}
+    {% include 'controls.twig' with {
+        prefix: 'item-blockers',
+        title: 'Item Blockers',
+        purpose: 'This tool is used to manage the blocked field values for DataX feeds.',
+        user: user,
+        host: host,
+        area: constant('\\TraderInteractive\\Area::DATAX'),
+        controls: [
+            {
+                id: 'create-item-blocker-button',
+                label: 'Create Item Blocker',
+                icon: 'create-icon',
+                privilege: constant('\\TraderInteractive\\Privilege::WRITE'),
+            },
+        ],
+    } only %}
+    <input id="feed-id" type="hidden" value="{{ feedId }}"/>
+    <input id="blocked-value" type="hidden" value="{{ blockedValue }}"/>
+    <table id="item-blockers-container"></table>
+    {% if dataXAdminUrl %}
+        <p id="external-links">
+            <a id="datax-admin-link" href="{{ dataXAdminUrl }}">View this page in DataX Admin (Feed {{ feedId }})</a>
+        </p>
+    {% endif %}
+    {% include "loading-animation-modal.twig" %}
+    {% include "datax/item-blockers/create-item-blocker-form.twig" %}
+    {% include "datax/item-blockers/delete-item-blocker-form.twig" %}
+    <template id="loading-animation">
+        {% include "loading-animation.twig" %}
+    </template>
+    <template id="row-controls">
+        <button class="delete-icon button-icon" title="Delete Item Blocker"></button>
+    </template>
+{% endblock %}

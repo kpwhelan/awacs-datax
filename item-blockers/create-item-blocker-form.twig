@@ -1,0 +1,10 @@
+{% include 'form.twig' with {
+    fields: [
+        { label: 'Feed ID', id: 'feed-id', name: 'feedId'},
+        { label: 'Field', id: 'xpath', name: 'xpath', type: 'select' },
+        { label: 'Blocked Values', id: 'values', name: 'values', type: 'select', multiple: 'true' },
+        { label: 'Additional Blocked Value', id: 'value', name: 'value' },
+    ],
+    hidden: 'true',
+    prefix: 'create-item-blocker',
+} only %}
