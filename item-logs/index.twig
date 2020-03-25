@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+{% block title %}DataX - Item Logs{% endblock %}
+{% block content %}
+    {% include 'controls.twig' with {
+        prefix: 'datax-item-logs',
+        title: 'Item Logs',
+        purpose: [
+            'This tool is used to search datax item logs.',
+        ],
+        user: user,
+        host: host,
+        area: constant('\\TraderInteractive\\Area::DATAX'),
+        controls: [
+        ],
+    } only %}
+    <table id="datax-item-logs-container"></table>
+    <input id="datax-item-log-feed-id" type="hidden" value="{{ feedId }}" />
+    <input id="datax-item-log-job-log-id" type="hidden" value="{{ jobLogId }}" />
+    <input id="datax-item-log-states" type="hidden" value="{{ itemLogStates }}" />
+    <div class="hidden">
+        {% include "loading-animation-modal.twig" %}
+        <template id="loading-animation">
+            {% include "loading-animation.twig" %}
+        </template>
+    </div>
+{% endblock %}
