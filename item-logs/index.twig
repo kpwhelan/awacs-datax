@@ -19,8 +19,8 @@
     <input id="datax-item-log-states" type="hidden" value="{{ itemLogStates }}" />
     <div class="hidden">
         {% include "loading-animation-modal.twig" %}
-        <template id="loading-animation">
-            {% include "loading-animation.twig" %}
-        </template>
     </div>
+    <template id="loading-animation">
+        {% include "loading-animation.twig" %}
+    </template>
 {% endblock %}
