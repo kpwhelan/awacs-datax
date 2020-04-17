@@ -1,5 +1,5 @@
-<form id="cancel-job-form" class="grid-form" action="/datax/jobs/cancel" method="post">
-    <label for="user-name">Job Log ID</label>
-    <input class="user-input" type="text" id="job-id" name="job-id" required/>
-    <input type="submit" id="cancel-job-button" value="Cancel Job" />
+<form id="cancel-job-form" class="grid-form">
+    <input id="cancel-job-id" type="hidden" name="id" required/>
+    <p class="warning-message">Are you sure you want to cancel this job?</p>
+    <p id="cancel-job-warning-message" class="delete-warning-text"></p>
 </form>

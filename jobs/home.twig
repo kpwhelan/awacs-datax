@@ -1,9 +1,56 @@
 {% extends "base.twig" %}
 {% block title %}DataX{% endblock %}
 {% block content %}
-    <h1>Cancel DataX Job</h1>
-    {%  include "datax/jobs/cancel-job-form.twig" %}
-    {% if message is defined %}
-        <span id="cancel-job-message" class="important-text">{{  message }}</span>
-    {%  endif %}
+    {% include 'controls.twig' with {
+        prefix: 'jobs',
+        title: 'DataX Jobs',
+        purpose: [
+            'This tool is used to monitor and manage DataX jobs.',
+            'The runtime column displays the time between creation and the last update. The value shown is in minutes.',
+        ],
+    } only %}
+    <table id="jobs-table"></table>
+    {% if legacyUrl %}
+        <p id="external-links">
+            <a id="legacy-tool-link" href="{{ legacyUrl }}">View this page in DataX Admin (Feed {{ feedId }})</a>
+        </p>
+    {% endif %}
+    <div class="hidden">
+        {% include 'loading-animation-modal.twig' with { hidden: 'false' } only %}
+        {% if allowCancel %}
+            {% include 'datax/jobs/cancel-job-form.twig' %}
+        {% endif %}
+    </div>
+    <template id="loading-animation">
+        {% include 'loading-animation.twig' %}
+    </template>
+    <template id="states">
+        {% for state in states %}
+            <option value="{{ state }}">{{ state }}</option>
+        {% endfor %}
+    </template>
+    <template id="feed-id-column">
+        <div class="feed-id-column-fields">
+            <div class="feed-id-column-field-id"></div>
+            <div class="feed-id-column-field-name"></div>
+            <div class="feed-id-column-field-transport-type"></div>
+        </div>
+    </template>
+    <template id="message-column">
+        <ul class="job-messages"></ul>
+    </template>
+    <template id="job-message">
+        <li class="job-message"></li>
+    </template>
+    <template id="job-message-line">
+        <div class="job-message-line"></div>
+    </template>
+    <template id="controls-column">
+        <div class="controls-column-controls-container">
+            <a class="item-logs-link" href="">Items</a>
+            {% if allowCancel %}
+                <button class="cancel-job-button">Cancel</button>
+            {% endif %}
+        </div>
+    </template>
 {% endblock %}
