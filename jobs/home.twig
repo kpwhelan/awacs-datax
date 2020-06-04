@@ -29,6 +29,11 @@
             <option value="{{ state }}">{{ state }}</option>
         {% endfor %}
     </template>
+    <template id="feed-transport-types">
+        {% for feedTransportType in feedTransportTypes %}
+            <option value="{{ feedTransportType }}">{{ feedTransportType }}</option>
+        {% endfor %}
+    </template>
     <template id="feed-id-column">
         <div class="feed-id-column-fields">
             <div class="feed-id-column-field-id"></div>
