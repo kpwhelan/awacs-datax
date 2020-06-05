@@ -9,6 +9,7 @@
             'The runtime column displays the time between creation and the last update. The value shown is in minutes.',
         ],
     } only %}
+    <input type="hidden" id="jobs-feed-id" value="{{ feedId }}" />
     <table id="jobs-table"></table>
     {% if legacyUrl %}
         <p id="external-links">
