@@ -2,8 +2,8 @@
 {% block title %}DataX{% endblock %}
 {% block content %}
     {% include 'controls.twig' with {
+        title: title,
         prefix: 'jobs',
-        title: 'DataX Jobs',
         purpose: [
             'This tool is used to monitor and manage DataX jobs.',
             'The runtime column displays the time between creation and the last update. The value shown is in minutes.',
