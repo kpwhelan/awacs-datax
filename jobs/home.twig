@@ -1,6 +1,6 @@
 {% extends "base.twig" %}
 {% block title %}DataX{% endblock %}
-{% block content %}
+{% block content %}{% spaceless %}
     {% include 'controls.twig' with {
         title: title,
         prefix: 'jobs',
@@ -52,4 +52,4 @@
             {% endif %}
         </div>
     </template>
-{% endblock %}
+{% endspaceless %}{% endblock %}
