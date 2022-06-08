@@ -1,0 +1,82 @@
+{% extends "base.twig" %}
+{% block title %}DataX - Feed File Distributions{% endblock %}
+{% block content %}
+    {% include 'controls.twig' with {
+        title: 'Feed File Distributions',
+        purpose: [
+            'This tool is used to manage feed file distribution settings.',
+        ],
+    } only %}
+    <div class="tool-controls">
+        <button class="create-feed-file-distribution-button themed">
+            <span class="create-icon"></span>
+            <span>Create Feed File Distribution</span>
+        </button>
+    </div>
+    <table id="feed-file-distributions-table" class="feed-file-distributions-table row-border stripe"></table>
+    <dialog class="create-feed-file-distribution-form-dialog">
+        {% include 'form.twig' with {
+            prefix: 'create-feed-file-distribution',
+            fields: [
+                { label: 'Source Feed Id', required: 'true', id: 'source-feed-id', name: 'sourceFeedId', type: 'text', list: 'feeds-list' },
+                { label: 'Source File Pattern', required: 'true', id: 'source-file-pattern', name: 'sourceFilePattern', type: 'text' },
+                { label: 'Destination Feed Ids', required: 'true', id: 'destination-feed-ids', name: 'destinationFeedIds', type: 'text', list: 'feeds-list' },
+                { label: 'Destination File Name', required: 'true', id: 'destination-file-name', name: 'destinationFileName', type: 'text' },
+                { label: 'Transfer Mode', required: 'true', id: 'transfer-mode', name: 'transferMode', type: 'select', options: transferModes },
+            ],
+        } only %}
+    </dialog>
+    <dialog class="edit-feed-file-distribution-form-dialog">
+        {% include 'form.twig' with {
+            prefix: 'edit-feed-file-distribution',
+            hiddenFields: [
+                { id: 'id', name: 'id' },
+            ],
+            fields: [
+                { label: 'Source Feed Id', required: 'true', id: 'source-feed-id', name: 'sourceFeedId', list: 'feeds-list' },
+                { label: 'Source File Pattern', required: 'true', id: 'source-file-pattern', name: 'sourceFilePattern' },
+                { label: 'Destination Feed Ids', required: 'true', id: 'destination-feed-ids', name: 'destinationFeedIds', list: 'feeds-list' },
+                { label: 'Destination File Name', required: 'true', id: 'destination-file-name', name: 'destinationFileName', type: 'text' },
+                { label: 'Transfer Mode', required: 'true', id: 'transfer-mode', name: 'transferMode', type: 'select', options: transferModes },
+            ],
+        } only %}
+    </dialog>
+    <dialog class="remove-feed-file-distribution-form-dialog">
+        <form id="remove-feed-file-distribution-form" class="remove-feed-file-distribution-form">
+            <input type="hidden" name="id"/>
+            <p class="warning-message">Are you sure you want to delete this feed file distribution?</p>
+            <div class="delete-warning-text">
+                <label for="remove-feed-file-distribution-form-source-feed-id">Source Feed Id</label>
+                <input id="remove-feed-file-distribution-form-source-feed-id" name="sourceFeedId" tabindex="-1" readonly/>
+                <label for="remove-feed-file-distribution-form-destination-feed-ids">Destination Feed Ids</label>
+                <input id="remove-feed-file-distribution-form-destination-feed-ids" name="destinationFeedIds" tabindex="-1" readonly/>
+            </div>
+        </form>
+    </dialog>
+    <datalist id="feeds-list">
+        {% for feed in feeds %}
+            <option value="{{ feed.id }}">{{ feed.name }}</option>
+        {% endfor %}
+    </datalist>
+    <template class="controls-column-template">
+        <button class="edit-feed-file-distribution-button themed" title="Edit">
+            <span class="edit-icon button-icon"></span>
+        </button>
+        <button class="remove-feed-file-distribution-button themed" title="Delete">
+            <span class="delete-icon button-icon"></span>
+        </button>
+    </template>
+    <template class="destination-feed-ids-column-template">
+        <div class="feed-id-list">
+            <slot name="destinationFeedIds"></slot>
+        </div>
+    </template>
+    <template class="feed-link-template">
+        <a class="feed-id-link" data-template-attributes="href" data-href="/datax/feeds/{feedId}">
+            <slot name="feedId"></slot>
+        </a>
+    </template>
+    <template class="loading-animation-template">
+        {% include "loading-animation.twig" %}
+    </template>
+{% endblock %}
