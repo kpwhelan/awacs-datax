@@ -1,0 +1,146 @@
+{% extends "base.twig" %}
+{% block title %}DataX - {{ title }}{% endblock %}
+{% block content %}
+    {% include 'controls.twig' with {
+        title: title,
+        purpose: [
+            'This tool is used to view and edit DataX feed information.',
+        ],
+    } only %}
+    <div class="feed-information-container">
+        <div class="feed-information-sections information-section-container">
+            <section id="feed-details" class="information-section">
+                {% include 'information-section-header.twig' with { header: 'Basic Information' } only %}
+                <dl class="information-list">
+                    <dd class="information-list-header">
+                        <label for="name">Feed Name</label>
+                    </dd>
+                    <dt class="information-list-body">
+                        <span id="name">{{ feed.name }}</span>
+                    </dt>
+                    <dd class="information-list-header">
+                        <label for="id">Feed ID</label>
+                    </dd>
+                    <dt class="information-list-body">
+                        <span id="id">{{ feed.id }}</span>
+                    </dt>
+                    <dd class="information-list-header">
+                        <label for="status">Status</label>
+                    </dd>
+                    <dt class="information-list-body">
+                        <span id="status" class="feed-status">{{ feed.status }}</span>
+                    </dt>
+                    <dd class="information-list-header">
+                        <label for="data-provider">Data Provider</label>
+                    </dd>
+                    <dt class="information-list-body">
+                        {% if feed.dataProvider %}
+                            <span id="data-provider">{{ feed.dataProvider }}</span>
+                        {% else %}
+                            <span id="data-provider">&mdash;</span>
+                        {% endif %}
+                    </dt>
+                    <dd class="information-list-header">
+                        <label for="transport-type">Transport Type</label>
+                    </dd>
+                    <dt class="information-list-body">
+                        <span id="transport-type">{{ transport.transportType }}</span>
+                    </dt>
+                    <dd class="information-list-header">
+                        <label for="created">Create Date</label>
+                    </dd>
+                    <dt class="information-list-body">
+                        <span id="created">{{ feed.created | date(dateFormat) }}</span>
+                        {% if feed.createdBy %}
+                            <span id="created-by"> ({{ feed.createdBy }})</span>
+                        {% endif %}
+                    </dt>
+                    <dd class="information-list-header">
+                        <label for="updated">Last Update</label>
+                    </dd>
+                    <dt class="information-list-body">
+                        <span id="updated">{{ feed.updated | date(dateFormat) }}</span>
+                        {% if feed.updatedBy %}
+                            <span id="updated-by"> ({{ feed.updatedBy }})</span>
+                        {% endif %}
+                    </dt>
+                    <dd class="information-list-header">
+                        <label for="groups">Feed Groups</label>
+                    </dd>
+                    <dt class="information-list-body">
+                        <ul id="groups" class="bulleted-list">
+                            {% for group in feed.groups %}
+                                <li class="bulleted-list-item">{{ group }}</li>
+                            {% endfor %}
+                        </ul>
+                    </dt>
+                </dl>
+            </section>
+            <section id="schedule" class="information-section">
+                {% include 'information-section-header.twig' with { header: 'Schedule', edit: 'schedule' } only %}
+                <dl class="schedule-information information-list">
+                    {% include 'datax/feeds/edit/schedule-information.twig' with {
+                        dateFormat: dateFormat,
+                        schedule: schedule,
+                        useTemplating: false,
+                    } only %}
+                </dl>
+            </section>
+        </div>
+        <div id="sidebar" class="sidebar information-section-container">
+            <section id="feed-management-options" class="information-section">
+                {% include 'information-section-header.twig' with { header: 'Feed Management Options' } only %}
+                {% include 'datax/feeds/feed-management-options.twig' with {
+                    feedId: feed.id,
+                    useTemplating: false,
+                } only %}
+            </section>
+        </div>
+    </div>
+    <div id="external-links" class="external-links">
+        <a id="datax-admin-link" href="{{ dataXAdminUrl }}">View this page in DataX Admin</a>
+    </div>
+    <dialog id="schedule-dialog">
+        <form id="schedule-form" class="grid-form" data-title="Edit Schedule" data-confirm-text="Edit Schedule">
+            <input type="hidden" name="feedId" value="{{ feed.id }}"/>
+            <input type="hidden" name="updatedBy" value="{{ userEmail }}"/>
+            <label for="schedule-form-frequency">Frequency</label>
+            <select id="schedule-form-frequency" name="frequency">
+                {% for frequency in frequencies %}
+                    <option value="{{ frequency }}">{{ frequency | title }}</option>
+                {% endfor %}
+            </select>
+            <label for="schedule-form-time-of-day">Time of Day</label>
+            <input id="schedule-form-time-of-day" name="timeOfDay" type="time" step="1"/>
+            <label for="schedule-form-days-to-run">Days to Run</label>
+            <div id="schedule-form-days-to-run" class="grid-form" name="daysToRun">
+                <label for=schedule-form-days-to-run-sunday">Sunday</label>
+                <input id=schedule-form-days-to-run-sunday" class="checkbox" name="sunday" type="checkbox" value="true"/>
+                <label for=schedule-form-days-to-run-monday">Monday</label>
+                <input id=schedule-form-days-to-run-monday" class="checkbox" name="monday" type="checkbox" value="true"/>
+                <label for=schedule-form-days-to-run-tuesday">Tuesday</label>
+                <input id=schedule-form-days-to-run-tuesday" class="checkbox" name="tuesday" type="checkbox" value="true"/>
+                <label for=schedule-form-days-to-run-wednesday">Wednesday</label>
+                <input id=schedule-form-days-to-run-wednesday" class="checkbox" name="wednesday" type="checkbox" value="true"/>
+                <label for=schedule-form-days-to-run-thursday">Thursday</label>
+                <input id=schedule-form-days-to-run-thursday" class="checkbox" name="thursday" type="checkbox" value="true"/>
+                <label for=schedule-form-days-to-run-friday">Friday</label>
+                <input id=schedule-form-days-to-run-friday" class="checkbox" name="friday" type="checkbox" value="true"/>
+                <label for=schedule-form-days-to-run-saturday">Saturday</label>
+                <input id=schedule-form-days-to-run-saturday" class="checkbox" name="saturday" type="checkbox" value="true"/>
+            </div>
+            <label for="schedule-form-next-run-instant">Next Run</label>
+            <input id="schedule-form-next-run-instant" name="nextRunInstant" type="datetime-local" step="1"/>
+        </form>
+    </dialog>
+    <template id="day-to-run-template">
+        {% include 'datax/feeds/edit/days-to-run-list-item.twig' with { useTemplating: true } only %}
+    </template>
+    <template id="schedule-information-template" data-feed-id="{{ feed.id }}" data-date-format="{{ dateFormat }}">
+        {% include 'datax/feeds/edit/schedule-information.twig' with {
+            dateFormat: dateFormat,
+            useTemplating: true,
+        } only %}
+    </template>
+    {% include 'loading-animation-modal.twig' %}
+{% endblock %}

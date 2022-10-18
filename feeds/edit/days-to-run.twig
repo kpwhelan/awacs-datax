@@ -1,0 +1,8 @@
+{% for day,value in daysToRun %}
+    {% if value %}
+        {% include 'datax/feeds/edit/days-to-run-list-item.twig' with {
+            useTemplating: useTemplating,
+            day: day,
+        } only %}
+    {% endif %}
+{% endfor %}

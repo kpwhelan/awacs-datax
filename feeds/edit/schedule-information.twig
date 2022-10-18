@@ -1,0 +1,68 @@
+<dd class="information-list-header">
+    <label for="schedule-frequency">Frequency</label>
+</dd>
+<dt class="information-list-body">
+    <span id="schedule-frequency">
+        {% if useTemplating %}
+            <slot name="frequency">{{ schedule.frequency | title }}</slot>
+        {% else %}
+            <span>{{ schedule.frequency | title }}</span>
+        {% endif %}
+    </span>
+</dt>
+<dd class="information-list-header">
+    <label for="schedule-start-date">Start Date</label>
+</dd>
+<dt class="information-list-body">
+    <span id="schedule-start-date">
+        {% if useTemplating %}
+            <slot name="startDate">{{ schedule.startDate | date(dateFormat) }}</slot>
+        {% else %}
+            <span>{{ schedule.startDate | date(dateFormat) }}</span>
+        {% endif %}
+    </span>
+</dt>
+<dd class="information-list-header">
+    <label for="schedule-time-of-day">Time of Day</label>
+</dd>
+<dt class="information-list-body">
+    <span id="schedule-time-of-day">
+        {% if useTemplating %}
+            <slot name="timeOfDay">{{ schedule.timeOfDay }}</slot>
+        {% else %}
+            <span>{{ schedule.timeOfDay }}</span>
+        {% endif %}
+    </span>
+</dt>
+<dd class="information-list-header">
+    <label for="schedule-days-to-run">Days to Run</label>
+</dd>
+<dt class="information-list-body">
+    <ul id="schedule-days-to-run" class="bulleted-list">
+        {% if useTemplating %}
+            <slot name="daysToRun">
+                {% include 'datax/feeds/edit/days-to-run.twig' with {
+                    useTemplating: useTemplating,
+                    daysToRun: schedule.daysToRun,
+                } only %}
+            </slot>
+        {% else %}
+            {% include 'datax/feeds/edit/days-to-run.twig' with {
+                useTemplating: useTemplating,
+                daysToRun: schedule.daysToRun,
+            } only %}
+        {% endif %}
+    </ul>
+</dt>
+<dd class="information-list-header">
+    <label for="schedule-next-run-instant">Next Run</label>
+</dd>
+<dt class="information-list-body">
+    <span id="schedule-next-run-instant">
+        {% if useTemplating %}
+            <slot name="nextRunInstant">{{ schedule.nextRunInstant | date(dateFormat) }}</slot>
+        {% else %}
+            <span>{{ schedule.nextRunInstant | date(dateFormat) }}</span>
+        {% endif %}
+    </span>
+</dt>

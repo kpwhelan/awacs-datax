@@ -1,0 +1,7 @@
+<li class="bulleted-list-item">
+    {% if useTemplating %}
+        <slot name="day">{{ day | title }}</slot>
+    {% else %}
+        <span>{{ day | title }}</span>
+    {% endif %}
+</li>
