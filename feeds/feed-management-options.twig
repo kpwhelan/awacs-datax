@@ -1,0 +1,16 @@
+<ul class="bulleted-list">
+    <li class="bulleted-list-item">
+        {% if useTemplating %}
+            <a data-template-attributes="href" data-href="/datax/item-blockers?feedId={{ feedId }}">Manage Item Blockers</a>
+        {% else %}
+            <a href="/datax/item-blockers?feedId={{ feedId }}">Manage Item Blockers</a>
+        {% endif %}
+    </li>
+    <li class="bulleted-list-item">
+        {% if useTemplating %}
+            <a data-template-attributes="href" data-href="/datax/feeds/{{ feedId }}/jobs">Manage Jobs</a>
+        {% else %}
+            <a href="/datax/feeds/{{ feedId }}/jobs">Manage Jobs</a>
+        {% endif %}
+    </li>
+</ul>

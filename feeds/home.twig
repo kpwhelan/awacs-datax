@@ -1,0 +1,36 @@
+{% extends "base.twig" %}
+{% block title %}DataX - Feeds{% endblock %}
+{% block content %}
+    {% include 'controls.twig' with {
+        prefix: 'feeds',
+        title: 'Feeds',
+        purpose: [
+            'With this tool you can search and view DataX Feeds'
+        ],
+    } only %}
+    <table id="feeds-table" class="feeds-table" data-date-format="{{ dateFormat }}"></table>
+    <div id="external-links" class="external-links">
+        <a id="datax-admin-link" href="{{ dataXAdminUrl }}">View this page in DataX Admin</a>
+    </div>
+    <template id="details-template">
+        <div class="feed-details-container">
+            {% include 'datax/feeds/feed-management-options.twig' with { useTemplating: true, feedId: '{id}' } only %}
+        </div>
+    </template>
+    <template id="expand-details-column-template">
+        <span class="expand-details-button expand-icon button-icon" title="Expand Feed Details"></span>
+    </template>
+    <template id="id-column-template">
+        <a data-template-attributes="href title" data-href="/datax/feeds/{id}" data-title="Feed {id}">
+            <slot name="id"></slot>
+        </a>
+    </template>
+    <template id="loading-animation-template">
+        {% include "loading-animation.twig" %}
+    </template>
+    <template id="status-options-template">
+        {% for statusOption in statusOptions %}
+            <option value="{{ statusOption }}" {{ statusOption == status ? 'selected' : '' }}>{{ statusOption | title }}</option>
+        {% endfor %}
+    </template>
+{% endblock %}
